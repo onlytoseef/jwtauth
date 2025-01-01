@@ -1,14 +1,18 @@
-import express from 'express';
+import "dotenv/config";
+import express from "express";
 
 const app = express();
-const PORT = 8000;
+const PORT = process.env.PORT;
 
 app.listen(PORT, (req, res) => {
-  console.log('server is ok');
+  console.log(
+    `Server is runing on PORT ${PORT}`,
+    `This is key ${process.env.KEY}`
+  );
 });
-app.get('/', (req, res) => {
-  res.send('This is homepath of server');
+app.get("/", (req, res) => {
+  res.send("This is homepath of server");
 });
-app.get('/api/test', (req, res) => {
-  res.json('This is API Request ');
+app.get("/api/test", (req, res) => {
+  res.json("This is API Request ");
 });

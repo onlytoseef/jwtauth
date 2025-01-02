@@ -1,8 +1,10 @@
 import "dotenv/config";
 import express from "express";
+import { connectDB } from "./db/index.js";
 
 const app = express();
 const PORT = process.env.PORT;
+connectDB();
 
 app.listen(PORT, (req, res) => {
   console.log(

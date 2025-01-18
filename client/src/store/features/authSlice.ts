@@ -3,7 +3,7 @@ import { AuthState } from "../../Types/Types";
 
 const initalState: AuthState = {
   user: null,
-  Autheticated: false,
+  Autheticated: true,
   isLoading: false,
   error: null,
 };

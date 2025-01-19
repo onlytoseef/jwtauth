@@ -6,8 +6,14 @@ export const registerUser = createAsyncThunk(
   "user/register",
   async (formData: UserData, { rejectWithValue }) => {
     try {
-      const result = await axios.post("/user/register", formData);
+      console.log(formData);
+      const result = await axios.post("/user/register", formData, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
       const response = result.data;
+      console.log(response);
       return response;
     } catch (error: any) {
       return rejectWithValue(error.response?.data || "Registration failed");

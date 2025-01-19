@@ -48,6 +48,7 @@ export default function Register() {
               </label>
               <input
                 type="email"
+                name="email"
                 className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500"
                 onChange={handleChange}
                 required
@@ -59,6 +60,7 @@ export default function Register() {
               </label>
               <input
                 type="password"
+                name="password"
                 className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500"
                 onChange={handleChange}
                 required

@@ -3,4 +3,6 @@ import registerUser from "../controllers/userAuth.js";
 
 const router = Router();
 
-router.route("register").post(registerUser);
+router.route("/register").post(registerUser);
+
+export default router;

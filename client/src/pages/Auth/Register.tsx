@@ -1,18 +1,26 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { UserData } from "../../Types/Types";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "../../store/store";
+import { registerUser } from "../../store/features/authSlice";
 
 export default function Register() {
-  const [firstName, setFirstName] = useState<string>("");
-  const [lastName, setLastName] = useState<string>("");
-  const [email, setEmail] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-
-    var name: String = firstName + lastName;
-    console.log({ name, email, password });
+  const [formData, setFormData] = useState<UserData>({
+    name: "",
+    email: "",
+    password: "",
+  });
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
+
+  const dispatch = useDispatch<AppDispatch>();
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    dispatch(registerUser(formData));
+  };
+
   return (
     <div>
       <div className="flex items-center justify-center min-h-screen bg-gray-100">
@@ -23,28 +31,17 @@ export default function Register() {
           <form className="space-y-4" onSubmit={handleSubmit}>
             <div>
               <label className="block mb-1 text-sm font-semibold text-gray-600">
-                First Name
+                Name
               </label>
               <input
                 type="text"
+                name="name"
                 className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500"
-                value={firstName}
-                onChange={(e) => setFirstName(e.target.value)}
+                onChange={handleChange}
                 required
               />
             </div>
-            <div>
-              <label className="block mb-1 text-sm font-semibold text-gray-600">
-                Last Name
-              </label>
-              <input
-                type="text"
-                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500"
-                value={lastName}
-                onChange={(e) => setLastName(e.target.value)}
-                required
-              />
-            </div>
+
             <div>
               <label className="block mb-1 text-sm font-semibold text-gray-600">
                 Email
@@ -52,8 +49,7 @@ export default function Register() {
               <input
                 type="email"
                 className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={handleChange}
                 required
               />
             </div>
@@ -64,8 +60,7 @@ export default function Register() {
               <input
                 type="password"
                 className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={handleChange}
                 required
               />
             </div>

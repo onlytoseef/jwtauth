@@ -4,8 +4,14 @@ export interface GetDataState {
   error: null | string;
 }
 export interface AuthState {
-  user: { username: string; email: string; password: string } | null;
+  user: { name: string; email: string; password: string } | null;
   Autheticated: boolean;
   isLoading: boolean;
   error: string | null;
+}
+
+export interface UserData {
+  name: string;
+  email: string;
+  password: string;
 }

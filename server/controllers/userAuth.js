@@ -1,6 +1,6 @@
 import User from "../models/userModel.js";
 
-registerUser = async (req, res) => {
+const registerUser = async (req, res) => {
   try {
     const { name, email, password } = req.body;
     newUser = await User.create({
@@ -12,3 +12,5 @@ registerUser = async (req, res) => {
     throw error;
   }
 };
+
+export default registerUser;

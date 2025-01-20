@@ -20,6 +20,7 @@ connectDB()
   .catch((err) => {
     console.log("Error starting Server", err);
   });
+
 import userRoutes from "./routes/user.routes.js";
 
 app.use(express.json());

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { loginData } from "../../Types/Types";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../store/store";
-import { registerUser } from "../../store/features/authSlice";
+import { loginUser } from "../../store/features/authSlice";
 
 export default function Login() {
   const dispatch = useDispatch<AppDispatch>();
@@ -18,7 +18,7 @@ export default function Login() {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    dispatch(registerUser(loginForm as any));
+    dispatch(loginUser(loginForm as any));
   };
   return (
     <div>

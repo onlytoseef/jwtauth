@@ -17,6 +17,16 @@ export const createTodo = createAsyncThunk(
   }
 );
 
+export const getAllTodo = createAsyncThunk("todo/getTodos", async () => {
+  try {
+    const Todos = await axios.get("/api/todo/getTodo");
+    const AllTodos = Todos.data;
+    return AllTodos;
+  } catch (error) {
+    console.log("Error Fetching Todos from server", error);
+  }
+});
+
 const initalState = {
   todo: null,
   isLoading: false,

@@ -4,6 +4,13 @@ import { connectDB } from "./db/index.js";
 
 const app = express();
 const PORT = process.env.PORT;
+app.use(express.json());
+
+import userRoutes from "./routes/user.routes.js";
+import todoRoutes from "./routes/todo.routes.js";
+
+app.use("/user", userRoutes);
+app.use("/todo", todoRoutes);
 
 connectDB()
   .then(() => {
@@ -17,11 +24,6 @@ connectDB()
       res.end("<h1>This is API Request</h1>");
     });
   })
-  .catch((err) => {
-    console.log("Error starting Server", err);
+  .catch((error) => {
+    console.log("Error starting Server", error);
   });
-
-import userRoutes from "./routes/user.routes.js";
-
-app.use(express.json());
-app.use("/user", userRoutes);

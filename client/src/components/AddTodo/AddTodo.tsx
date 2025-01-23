@@ -26,7 +26,6 @@ const AddTodo: React.FC = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log("Form Data:", formData);
-    // Handle form submission logic here
   };
 
   return (
@@ -137,7 +136,7 @@ const AddTodo: React.FC = () => {
                     htmlFor="description"
                     className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                   >
-                    Product Description
+                    Todo Description
                   </label>
                   <textarea
                     id="description"

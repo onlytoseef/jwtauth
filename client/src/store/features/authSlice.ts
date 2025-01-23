@@ -7,7 +7,7 @@ export const registerUser = createAsyncThunk(
   async (formData: UserData, { rejectWithValue }) => {
     try {
       console.log(formData);
-      const result = await axios.post("/user/register", formData);
+      const result = await axios.post("api/user/register", formData);
       const response = result.data;
       console.log(response);
       return response;
@@ -21,7 +21,7 @@ export const loginUser = createAsyncThunk(
   async (loginForm: loginData, { rejectWithValue }) => {
     try {
       console.log(loginForm);
-      const result = await axios.post("/user/login", loginForm);
+      const result = await axios.post("/api/user/login", loginForm);
       const response = result.data;
       console.log(response);
       return response;

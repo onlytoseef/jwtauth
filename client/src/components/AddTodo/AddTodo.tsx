@@ -1,15 +1,20 @@
 import React, { useState } from "react";
+import { todoData } from "../../Types/Types";
+import { useDispatch } from "react-redux";
+import { createTodo } from "../../store/features/todoSlice";
+import { AppDispatch } from "../../store/store";
 
 const AddTodo: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [formData, setFormData] = useState({
+  const [todoForm, setTodoForm] = useState<todoData>({
     name: "",
-    date: "",
+    date: null,
     category: "",
     description: "",
   });
 
   const toggleModal = () => setIsOpen(!isOpen);
+  const dispatch = useDispatch<AppDispatch>();
 
   const handleChange = (
     e: React.ChangeEvent<
@@ -17,15 +22,16 @@ const AddTodo: React.FC = () => {
     >
   ) => {
     const { name, value } = e.target;
-    setFormData({
-      ...formData,
+    setTodoForm({
+      ...todoForm,
       [name]: value,
     });
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Form Data:", formData);
+    dispatch(createTodo(todoForm));
+    console.log("Form Data:", todoForm);
   };
 
   return (
@@ -83,7 +89,7 @@ const AddTodo: React.FC = () => {
                     type="text"
                     id="name"
                     name="name"
-                    value={formData.name}
+                    value={todoForm.name}
                     onChange={handleChange}
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                     placeholder="Type product name"
@@ -101,7 +107,7 @@ const AddTodo: React.FC = () => {
                     type="date"
                     id="date"
                     name="date"
-                    value={formData.date}
+                    value={todoForm.date ?? ""}
                     onChange={handleChange}
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                     placeholder="$2999"
@@ -118,7 +124,7 @@ const AddTodo: React.FC = () => {
                   <select
                     id="category"
                     name="category"
-                    value={formData.category}
+                    value={todoForm.category}
                     onChange={handleChange}
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                   >
@@ -141,7 +147,7 @@ const AddTodo: React.FC = () => {
                   <textarea
                     id="description"
                     name="description"
-                    value={formData.description}
+                    value={todoForm.description}
                     onChange={handleChange}
                     rows={4}
                     className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"

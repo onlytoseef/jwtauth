@@ -7,10 +7,10 @@ const TodoSchema = mongoose.Schema({
     trim: true,
   },
   date: {
-    type: Number,
+    type: String,
     required: true,
   },
-  decription: {
+  description: {
     type: String,
     required: true,
   },

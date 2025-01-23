@@ -20,3 +20,9 @@ export interface loginData {
   email: string;
   password: string;
 }
+export interface todoData {
+  name: string;
+  description: string;
+  date: number | null;
+  category: string;
+}

@@ -16,3 +16,12 @@ export const createTodo = async (req, res) => {
     return res.status(500).json({ message: "Todo Add Failed", error });
   }
 };
+
+export const getAllTodo = async (req, res) => {
+  try {
+    const todo = await Todo.find({});
+    return res.status(200).json(todo);
+  } catch (error) {
+    return res.status(400).json({ message: "Error Fetching the todos" });
+  }
+};

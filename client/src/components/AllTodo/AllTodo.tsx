@@ -21,7 +21,7 @@ export default function AllTodo() {
         Get Todos
       </button>
 
-      {isLoading && <p>Loading...</p>}
+      {isLoading && <p>Loading</p>}
 
       {error && <p style={{ color: "red" }}>Error: {error}</p>}
 

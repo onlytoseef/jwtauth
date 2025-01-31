@@ -89,3 +89,4 @@ export const { logout } = authSlice.actions;
 export default authSlice.reducer;
 
 // gonna add redux query soon
+// tomorrow i will apply the query
